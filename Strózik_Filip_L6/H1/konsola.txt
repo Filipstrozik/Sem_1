@@ -1,0 +1,10 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=63084:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\PSiO\H1\out\production\L6 Main
+koszt materiału z1 = 95.2
+koszt ciecia z1 = 24.0
+koszt materialu z2 = 218.04199999999997
+koszt materialu zlecenia figury zlozonej = 703.8
+koszt ciecia zlecenia figury zlozonej = 82.24000000000001
+koszt materialu zlecenia figury zlozonej po dodaniu figury = 873.8
+koszt ciecia zlecenia figury zlozonej po dodaniu figury = 114.24000000000001
+
+Process finished with exit code 0

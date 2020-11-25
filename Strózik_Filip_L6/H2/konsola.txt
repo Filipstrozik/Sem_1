@@ -1,0 +1,24 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=62998:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\PSiO\L6\H2\out\production\H2 Main
+Kowalski 1536.0
+Nowak 1620.0
+Kowalski jest Robotnikiem
+Nowak jest Nierobotnikiem
+Liczba Pracownikow: 2
+Kowalski 1536.0
+Nowak 1620.0
+Strozik 2025.0
+Adamowicz 2025.0
+Wojtowicz 2025.0
+Wojtacha 1755.0
+Liczba Pracownikow: 6
+Liczba Nierobotnikow: 5
+Liczba Robotnikow: 1
+Suma wypłat w firmie: 10986.0
+Adamowicz 2025.0
+Kowalski 1536.0
+Nowak 1620.0
+Strozik 2025.0
+Wojtacha 1755.0
+Wojtowicz 2025.0
+
+Process finished with exit code 0
