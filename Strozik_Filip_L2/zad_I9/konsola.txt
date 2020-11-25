@@ -1,0 +1,8 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=50547:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\out\production\zad_I9 Main
+Podaj liczbę X
+-1
+Podaj liczbę K
+4
+Potega liczby X do K = 1
+
+Process finished with exit code 0

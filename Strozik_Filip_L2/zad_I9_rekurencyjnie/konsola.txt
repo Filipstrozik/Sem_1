@@ -1,0 +1,8 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=55838:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I9_rekurencyjnie\out\production\zad_I9_rekurencyjnie Main
+Podaj liczbę X
+2
+Podaj liczbę K
+10
+Potega liczby X do K = 1024
+
+Process finished with exit code 0

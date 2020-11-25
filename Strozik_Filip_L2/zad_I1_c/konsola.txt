@@ -1,0 +1,12 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=50433:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\out\production\zad_I1_c Main
+5
+2
+-1
+5
+-3
+-4
+-1.0
+-3.0
+Srednia aryt. dodatnich wyrazów n-ciągu: -2.0
+
+Process finished with exit code 0

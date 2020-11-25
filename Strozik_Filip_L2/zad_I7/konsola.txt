@@ -1,0 +1,6 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=50514:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\out\production\zad_I7 Main
+42 56
+dzielnik: 14
+
+Process finished with exit code 0
+

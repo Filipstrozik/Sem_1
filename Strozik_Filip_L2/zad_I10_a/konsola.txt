@@ -1,0 +1,6 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=56102:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I10_a\out\production\zad_I10_a Main
+Podaj liczbę X
+2
+7.388994708994708
+
+Process finished with exit code 0

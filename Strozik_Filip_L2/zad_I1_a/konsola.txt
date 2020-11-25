@@ -1,0 +1,15 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=50376:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I1_a\out\production\zad_I1_a Main
+10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+9
+Suma wszystkich wyrazów n-ciągu: 54.0
+
+Process finished with exit code 0

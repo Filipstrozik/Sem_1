@@ -1,0 +1,39 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=57320:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I10_c\out\production\zad_I10_c Main
+Podaj liczbę X
+3
+-4.5   -3.5
+3.375   -0.125
+-1.0125   -1.1375
+0.1627232142857143   -0.9747767857142857
+-0.016272321428571428   -0.9910491071428571
+0.001109476461038961   -0.9899396306818181
+Przyblizona wartosc funkcji dla wartosci x= 3.0 to -0.9899396306818181
+
+Process finished with exit code 0
+
+
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=57329:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I10_c\out\production\zad_I10_c Main
+Podaj liczbę X
+1
+-0.5   0.5
+0.041666666666666664   0.5416666666666666
+-0.001388888888888889   0.5402777777777777
+Przyblizona wartosc funkcji dla wartosci x= 1.0 to 0.5402777777777777
+
+Process finished with exit code 0
+
+
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=57339:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\zad_I10_c\out\production\zad_I10_c Main
+Podaj liczbę X
+5
+-12.5   -11.5
+26.041666666666668   14.541666666666668
+-21.70138888888889   -7.159722222222221
+9.68812003968254   2.528397817460318
+-2.6911444554673722   -0.16274663800705413
+0.5096864498991235   0.34693981189206935
+-0.07001187498614334   0.276927936905926
+0.007292903644389931   0.28422084055031593
+Przyblizona wartosc funkcji dla wartosci x= 5.0 to 0.28422084055031593
+
+Process finished with exit code 0

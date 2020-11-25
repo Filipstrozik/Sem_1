@@ -1,0 +1,5 @@
+"D:\MAIN\Intellij IDEA\sdk\bin\java.exe" "-javaagent:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=50464:D:\MAIN\Intellij IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\MAIN\CODING\out\production\zad_I3 Main
+105080
+Liczba naturalna K ma 6 liczb znaczących.
+
+Process finished with exit code 0
