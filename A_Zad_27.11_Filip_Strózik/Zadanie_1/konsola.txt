@@ -1,0 +1,29 @@
+D:\CODING\JDK\bin\java.exe "-javaagent:D:\CODING\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=61575:D:\CODING\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath D:\Programowanie\PSiO\Zadanie_1\out\production\Zadanie_1 Main
+Rejestr Dyplomow: 
+pesel wlasciciela: 1618 Unikatowy nr dyplomu: 1 data wystawienia: 01.11 spec: Infromatyka
+
+dyplom juz jest w rejestrze!
+Rejestr Dyplomow: 
+pesel wlasciciela: 1618 Unikatowy nr dyplomu: 1 data wystawienia: 01.11 spec: Infromatyka
+
+Rejestr Dyplomow: 
+pesel wlasciciela: 1618 Unikatowy nr dyplomu: 1 data wystawienia: 01.11 spec: Infromatyka
+pesel wlasciciela: 12345 Unikatowy nr dyplomu: 2 data wystawienia: 11.11 tytuł: Matematyka
+
+Dyplomy Wlasciciela o numerze: 12345
+ pesel wlasciciela: 12345 Unikatowy nr dyplomu: 2 data wystawienia: 11.11 tytuł: Matematyka
+
+Dane wlasciciela Dyplomu o numerze: 1
+pesel wlasciciela: 1618 
+Rejestr Dyplomow: 
+pesel wlasciciela: 1618 Unikatowy nr dyplomu: 1 data wystawienia: 01.11 spec: Infromatyka
+pesel wlasciciela: 12345 Unikatowy nr dyplomu: 2 data wystawienia: 11.11 tytuł: Matematyka
+pesel wlasciciela: 12345 Unikatowy nr dyplomu: 3 data wystawienia: 01.01 tytuł: Historia
+
+Osiągnieto maksymalną ilosc Dyplomow!
+Dyplomy Wlasciciela o numerze: 12345
+ pesel wlasciciela: 12345 Unikatowy nr dyplomu: 2 data wystawienia: 11.11 tytuł: Matematyka
+ pesel wlasciciela: 12345 Unikatowy nr dyplomu: 3 data wystawienia: 01.01 tytuł: Historia
+
+
+Process finished with exit code 0

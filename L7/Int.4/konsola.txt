@@ -1,0 +1,19 @@
+E:\Main\SDK\bin\java.exe "-javaagent:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=56279:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath E:\Main\Programowanie\PSiO\L7\Int.4\out\production\Int.4 Main
+Pole:
+50.0
+Obwod:
+30.0
+koszt Ciecia:
+239.70000000000002
+Koszt Materialu
+299.5
+Pole:
+100.0
+Obwod:
+40.0
+koszt Ciecia:
+819.774
+Koszt Materialu
+2479.86
+
+Process finished with exit code 0

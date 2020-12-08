@@ -1,0 +1,29 @@
+E:\Main\SDK\bin\java.exe "-javaagent:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=56327:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath E:\Main\Programowanie\PSiO\L7\Int.1\out\production\Int.1 Main.Main
+F(x)=x^3+6.0x^2+10.0x
+         x       f(x) 
+    -10,00   -500,000
+     -8,00   -208,000
+     -6,00    -60,000
+     -4,00     -8,000
+     -2,00     -4,000
+      0,00      0,000
+      2,00     52,000
+      4,00    200,000
+      6,00    492,000
+      8,00    976,000
+     10,00   1700,000
+
+pochodna w xo=0, h=0.5
+13.25
+Miejse zerowe w przedziale (-10,10)
+0.0
+ekstremum w przedziale (-4,2)
+-2.82
+ektremum w przedziale (-2,5)
+-1.19
+przegiecie funkcji w przedziale (-20,20)
+-2.01
+wartosc całki funkcji w przedziale (-2,0) z n= 1000
+-8.0
+
+Process finished with exit code 0
