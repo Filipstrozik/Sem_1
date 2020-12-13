@@ -1,0 +1,14 @@
+Przesyłam drugie rozwiązanie problemu.
+Podczas Kolokwium wpadłem na pierwsze rozwiązanie, 
+tylko zadziwiło mnie to, że w Klasie Wykaz, tak naprawdę 
+tylko wykonujemy całą metode w Klasach implementujących 
+Interfejs Lista Danych, dlatego postanowiłem zastanowić się
+czy to na pewno jest słuszne.
+
+Drugie rozwiąznie umożliwia na dostęp do wierszy samej listy danych
+- String w tablicy String[], do samego nagłówka, informacji dodatkowej
+i do informacji zestawienia, co sprawia, że w przyszłym rozwinięciu programu
+możemy mieć wiecej funkcjonalości i jest wiecej zmiennych które możemy potem 
+użyć do jakiś innych rozwiązań. Mam nadzieję, że dobrze to wytłumaczyłem.
+
+Filip Strózik 260377 Student I roku Informatyki Stosowanej na wydziale Informatyki i Zarządzania.

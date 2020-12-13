@@ -23,15 +23,28 @@ public class GrupaStud implements ListaDanych{
         }
 
         @Override
-        public String lista() {
-                String s = info+"\n";
-                s=s+String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"imie", "nazwisko",
-                        "nr_indeksu", "ocena");
+        public String [] lista() {
+                String [] s = new String[students.length];
                 for(int i=0;i<students.length;i++){
-                        s=s+String.format("%2d %10s  %10s  %10d %10.2f \n",i+1 , students[i].imie, students[i].nazwisko,
+                        s[i] = String.format("%10s  %10s  %10d %10.2f \n", students[i].imie, students[i].nazwisko,
                                 students[i].nr_indeksu, students[i].ocena);
                 } //oczywisicie, gdyby zmienne obiektu student bylyby private to trzebabylo uzyc np.getimie()
-                s=s+String.format("Srednia studentow : %5.2f",srednia()); //dodatkowa infromacja
                 return s;
+        }
+
+        @Override
+        public String naglowek_listy() {
+                return String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"imie", "nazwisko",
+                        "nr_indeksu", "ocena");
+        }
+
+        @Override
+        public String infozestawienia() {
+                return info+"\n";
+        }
+
+        @Override
+        public String dodatkowe_info() {
+                return String.format("Srednia studentow : %5.2f",srednia());
         }
 }

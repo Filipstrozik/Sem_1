@@ -25,15 +25,28 @@ public class Zakup implements ListaDanych{
 
 
     @Override
-    public String lista() {
-        String s = info+"\n";
-        s=s+String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"nazwa", "ilosc",
-                "cena", "wartosc");
+    public String [] lista() {
+        String [] s = new String[t_towarow.length];
         for(int i=0;i< t_towarow.length;i++){
-            s=s+String.format("%2d %10s  %10d  %10.2f %10.2f \n",i+1 ,t_towarow[i].nazwa,t_towarow[i].ilosc,t_towarow[i].cena
+            s[i] = String.format("%10s  %10d  %10.2f %10.2f \n",t_towarow[i].nazwa,t_towarow[i].ilosc,t_towarow[i].cena
             ,t_towarow[i].wartosc);
         }
-        s=s+String.format("Laczna wartosc towarow : %7.2f", lacznaWartosc());
         return s;
+    }
+
+    @Override
+    public String naglowek_listy() {
+        return String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"nazwa", "ilosc",
+                "cena", "wartosc");
+    }
+
+    @Override
+    public String infozestawienia() {
+        return info+"\n";
+    }
+
+    @Override
+    public String dodatkowe_info() {
+        return String.format("Laczna wartosc towarow : %7.2f", lacznaWartosc());
     }
 }
