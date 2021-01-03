@@ -1,0 +1,13 @@
+E:\Main\SDK\bin\java.exe "-javaagent:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\lib\idea_rt.jar=53030:E:\Main\IDEA\IntelliJ IDEA 2020.2.3\bin" -Dfile.encoding=UTF-8 -classpath E:\Main\Programowanie\PSiO\L8\Z3\out\production\Z3 Main
+__rekordy wszystkie_________
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=1, godzina=1, minuta=1}, temperatura=11.45}
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=2, godzina=1, minuta=1}, temperatura=16.45}
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=3, godzina=1, minuta=1}, temperatura=40.23}
+_Pomiary we wskazanym miesiacu okreslonego roku__________
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=1, godzina=1, minuta=1}, temperatura=11.45}
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=2, godzina=1, minuta=1}, temperatura=16.45}
+Pomiar{czas=Czas{rok=2020, miesiac=1, dzien=3, godzina=1, minuta=1}, temperatura=40.23}
+2
+3
+
+Process finished with exit code 0
