@@ -1,0 +1,110 @@
+    public static void wariant1(String nazwa_pliku){
+        FileInputStream fistream=null;
+        FileOutputStream fostream=null;
+        try{
+            File plik =  new File(nazwa_pliku);
+            fistream = new FileInputStream(plik);
+
+            System.out.println("Znaleziono plik, uwtworzono strumien poloczeniowy");
+
+            System.out.println("Utworzenie pliky wyjs...");
+
+            File zapis = new File("zapis1.png");
+            fostream = new FileOutputStream(zapis);
+
+            System.out.println("Kopiowanie...");
+            long t1 = System.currentTimeMillis();
+            while (fistream.available()!=0){
+                fostream.write(fistream.read());
+            }
+            long t2 = System.currentTimeMillis();
+            System.out.println(t2-t1);
+        }
+        catch (FileNotFoundException fne) {
+            System.out.println("Nie znaleziono pliku");
+        }
+        catch (IOException ioe) {
+            System.out.println("IO wyjatek");
+        }
+        finally {
+            if(fistream!=null){
+                try{
+                    fistream.close();
+                    System.out.println("poprawne zamykanie strumienia wej....");
+                }
+                catch (IOException e){
+                    System.out.println("IO wyjatek podczas zamykania strumienia wej");
+                }
+            }
+            if(fostream!=null)
+            {
+                try{
+                    fostream.close();
+                    System.out.println("poprawne zamykanie strumienia wyj....");
+                }
+                catch (IOException e){
+                    System.out.println("IO wyjatek podczas zamykania strumienia wyj");
+                }
+            }
+        }
+    }
+    
+    
+     public static void wariant3(String nazwa_pliku) {
+        BufferedInputStream bfistream=null;
+        BufferedOutputStream bfostream=null;
+        try{
+            File plik =  new File(nazwa_pliku);
+            bfistream = new BufferedInputStream(new FileInputStream(plik));
+
+            System.out.println("Buforowanie wejscia systemu");
+
+            System.out.println("Utworzenie pliky wyjs...");
+
+            File zapis = new File("zapis3.png");
+            bfostream = new BufferedOutputStream(new FileOutputStream(zapis));
+
+            System.out.println("Kopiowanie...");
+
+
+            long t1 = System.currentTimeMillis();
+            while (bfistream.available()!=0){
+                bfostream.write(bfistream.readAllBytes());
+            }
+            long t2 = System.currentTimeMillis();
+            System.out.println(t2-t1);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Nie znaleziono pliku");
+        }
+        catch (IOException e) {
+            System.out.println("IO wyjatek");
+        }
+        finally {
+            try{
+                bfistream.close();
+                System.out.println("poprawne zamykanie strumienia wej....");
+            }
+            catch (IOException e){
+                System.out.println("IO wyjatek");
+            }
+            catch (NullPointerException e){
+                System.out.println("nie mozna zamknac strumienia wejsciowego, ktorego nie ma!");
+            }
+            try{
+                bfostream.close();
+                System.out.println("poprawne zamykanie strumienia wyj....");
+            }
+            catch (IOException e){
+                System.out.println("IO wyjatek");
+            }
+            catch (NullPointerException e){
+                System.out.println("nie mozna zamknac strumienia wyjsciowego, ktorego nie ma!");
+            }
+        }
+    
+    
+    
+    
+    
+    
