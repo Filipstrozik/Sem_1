@@ -1,0 +1,61 @@
+// KLASY ABSTRAKCYJNE---------------------------------------
+
+public abstract class Pracownik {
+ protected String nazwisko;
+ protected double etat;
+ public Pracownik(){
+ this.nazwisko = null;
+ this.etat = 0.0;
+ }
+
+ public Pracownik(String nazwisko, double etat){
+ this.nazwisko = nazwisko;
+ this.etat = etat;
+ }
+ public String toString(){
+ // String s = nazwisko + " ";
+ String s = nazwisko + " etat: " + etat;
+ return s;
+ }
+
+ public abstract double obliczWyplate();
+}
+
+// KLASY PODRZEDNE --------------------------------
+
+public class Robotnik extends Pracownik {
+ private double godziny;
+ private double stawka;
+ public static final float LIMIT = 100;
+ public Robotnik(String nazwisko, double etat, double godziny, double stawka){
+ super(nazwisko, etat);
+ this.godziny = godziny;
+ this.stawka = stawka;
+ }
+
+ public double obliczWyplate(){
+ double w,ng=0,fg;
+ double limit = etat *LIMIT;
+ if(godziny > limit)
+ {
+ ng = godziny-limit;
+ fg = limit;
+ }
+ else
+ {
+ ng = 0;
+ fg = godziny;
+ }
+ w = stawka*fg + 1.5*stawka*ng;
+ return w;
+ }
+
+ public String toString(){
+ String dane;
+ //dane = super.toString() + "robotnik: " + " etat " + etat; // super jest konieczne
+ dane = super.toString() + " robotnik ";
+ return dane;
+ }
+}
+
+
