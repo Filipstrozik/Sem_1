@@ -1,0 +1,173 @@
+import java.io.*;
+import java.util.Scanner;
+class zadanie{
+    public void ciag_par() throws IOException {
+        long l;
+        double d=0;
+        try(
+                FileInputStream plikBin = new FileInputStream("OCENY.dat");
+                BufferedInputStream buforBin = new BufferedInputStream(plikBin);
+                DataInputStream databin = new DataInputStream(buforBin);
+
+                FileOutputStream plikBin1 = new FileOutputStream("POZYTYWNE.dat");
+                BufferedOutputStream buforoutBin1 = new BufferedOutputStream(plikBin1);
+                DataOutputStream pozdata1 = new DataOutputStream(buforoutBin1);
+
+                FileOutputStream plikBin2 = new FileOutputStream("NEGATYWNE.dat");
+                BufferedOutputStream buforoutBin2 = new BufferedOutputStream(plikBin2);
+                DataOutputStream negdata2 = new DataOutputStream(buforoutBin2);
+                )
+        {
+            while(true){
+                try{
+                    l = databin.readLong();
+                    d = databin.readDouble();
+                    if(d>2.0)
+                    {
+                        pozdata1.writeLong(l);
+                        pozdata1.writeDouble(d);
+                    }
+                    else
+                    {
+                        negdata2.writeLong(l);
+                        negdata2.writeDouble(d);
+                    }
+                }
+                catch (EOFException e){
+                    databin.close();
+                    pozdata1.close();
+                    negdata2.close();
+                    break;
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("Nie można znalesc pliku!");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Blad odczytania/zapisywania pliku - ciag par");
+
+        }
+    }
+
+    public void obiektowo() throws IOException {
+        para p;
+        try(
+                FileInputStream plikBin = new FileInputStream("OCENY.bin");
+                ObjectInputStream dataobj = new ObjectInputStream(plikBin);
+
+                FileOutputStream plikBin1 = new FileOutputStream("POZYTYWNE.bin");
+                ObjectOutputStream pozobj = new ObjectOutputStream(plikBin1);
+
+                FileOutputStream plikBin2 = new FileOutputStream("NEGATYWNE.bin");
+                ObjectOutputStream negobj = new ObjectOutputStream(plikBin2);
+        )
+        {
+            while(true){
+                try{
+                    p = (para) dataobj.readObject();
+                    if(p.ocena>2.0)
+                    {
+                        pozobj.writeObject(p);
+                    }
+                    else
+                    {
+                        negobj.writeObject(p);
+                    }
+                }
+                catch (EOFException e){
+                    dataobj.close();
+                    pozobj.close();
+                    negobj.close();
+                    break;
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("Nie można znalesc pliku!");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Blad odczytania/zapisywania pliku - obiektowo");
+
+        }
+    }
+
+}
+
+class para implements Serializable{
+    long indeks;
+    double ocena;
+    public para(long l, double d)
+    {
+        indeks=l;
+        ocena=d;
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        Scanner sk = new Scanner(System.in);
+        System.out.println("1 - ciag par \n2 - obiektowo");
+        if(sk.nextInt()==1)
+        {
+            try {
+                FileOutputStream pliktest = new FileOutputStream("OCENY.dat");
+                BufferedOutputStream buforoutBin = new BufferedOutputStream(pliktest);
+                DataOutputStream dataplik = new DataOutputStream(buforoutBin);
+                for(int i=0;i<3;i++){
+                    long l = sk.nextLong();
+                    double d = sk.nextDouble();
+                    dataplik.writeLong(l);
+                    dataplik.writeDouble(d);
+                }
+                dataplik.close();
+
+            }
+            catch (FileNotFoundException e)
+            {
+                System.out.println("Nie można znalesc pliku!");
+            }
+            catch (IOException e)
+            {
+                System.out.println("Blad odczytania/zapisywania pliku - main1");
+            }
+
+            zadanie z1 = new zadanie();
+            z1.ciag_par();
+        }
+        else
+        {
+            para p1 = new para(1,2.3);
+            para p2 = new para(2,2.2);
+            para p3 = new para(3,2.4);
+            try{
+                FileOutputStream plikBin = new FileOutputStream("OCENY.bin");
+                ObjectOutputStream objs = new ObjectOutputStream(plikBin);
+
+                objs.writeObject(p1);
+                objs.writeObject(p2);
+                objs.writeObject(p3);
+                objs.close();
+            }
+            catch (FileNotFoundException e)
+            {
+                System.out.println("Nie można znalesc pliku!");
+            }
+            catch (IOException e)
+            {
+                System.out.println("Blad odczytania/zapisywania pliku - main2");
+            }
+
+            zadanie z1 = new zadanie();
+            z1.obiektowo();
+        }
+    }
+}
