@@ -1,0 +1,216 @@
+public class Wykaz {
+
+        ListaDanych lista;
+
+        public Wykaz(ListaDanych l){
+            lista = l;
+        }
+
+        public String toString(){
+            String s="";
+            s=s+lista.infozestawienia();
+            s=s+lista.naglowek_listy();
+            String [] temp = lista.lista();
+            for(int i=0;i< temp.length;i++){
+                s=s+String.format("%2d  %s",i+1,temp[i]);
+            }
+            s=s+lista.dodatkowe_info();
+            return s;
+        }
+
+}
+
+
+
+public interface ListaDanych {
+    public String [] lista();
+    public String naglowek_listy();
+    public String infozestawienia();
+    public String dodatkowe_info();
+
+}
+
+
+
+
+public class Student {
+    String imie;
+    String nazwisko;
+    long nr_indeksu;
+    double ocena;
+
+    public Student(String im, String n, int nr,  double o) {
+        imie = im;
+        nazwisko=n;
+        nr_indeksu=nr;
+        ocena=o;
+    }
+}
+
+
+
+
+
+public class GrupaStud implements ListaDanych{
+        String info; //przechowuje informacje o zestawienu
+        Student [] students;//wykaz studentow
+        public GrupaStud(String i, Student [] ts){
+                info = i;
+                students = ts;
+        }
+        public void DodajStudenta(Student s){
+                Student []temp = new Student[students.length+1];
+                for(int i=0;i<students.length;i++){
+                        temp[i]=students[i];
+                }
+                temp[students.length]=s;
+                students=temp;
+        }
+
+        public double srednia(){ //potrzebna by obliczyc dodatkowa informacje
+                double temp=0;
+                for(int i=0;i<students.length;i++){
+                        temp=temp+students[i].ocena;
+                }
+                return (temp/students.length);
+        }
+
+        @Override
+        public String [] lista() {
+                String [] s = new String[students.length];
+                for(int i=0;i<students.length;i++){
+                        s[i] = String.format("%10s  %10s  %10d %10.2f \n", students[i].imie, students[i].nazwisko,
+                                students[i].nr_indeksu, students[i].ocena);
+                } //oczywisicie, gdyby zmienne obiektu student bylyby private to trzebabylo uzyc np.getimie()
+                return s;
+        }
+
+        @Override
+        public String naglowek_listy() {
+                return String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"imie", "nazwisko",
+                        "nr_indeksu", "ocena");
+        }
+
+        @Override
+        public String infozestawienia() {
+                return info+"\n";
+        }
+
+        @Override
+        public String dodatkowe_info() {
+                return String.format("Srednia studentow : %5.2f",srednia());
+        }
+}
+
+
+
+
+
+
+public class Towar {
+    String nazwa;
+    int ilosc;
+    double cena;
+    double wartosc;
+
+    public Towar(String n, int i, double c){
+        nazwa=n;
+        ilosc=i;
+        cena=c;
+        wartosc = cena*ilosc;
+    }
+}
+
+
+
+
+
+
+
+public class Zakup implements ListaDanych{
+    String info;
+    Towar [] t_towarow;
+    public Zakup(String i,Towar [] t){
+        info = i;
+        t_towarow = t;
+    }
+
+    public void DodajTowar(Towar t){
+        Towar [] temp = new Towar[t_towarow.length+1];
+        for(int i=0;i<t_towarow.length;i++){
+            temp[i]=t_towarow[i];
+        }
+        temp[t_towarow.length]=t;
+        t_towarow=temp;
+    }
+
+    public double lacznaWartosc(){
+        double temp=0.0;
+        for(int i=0;i< t_towarow.length;i++){
+            temp = temp+ t_towarow[i].wartosc;
+        }
+        return temp;
+    }
+
+
+    @Override
+    public String [] lista() {
+        String [] s = new String[t_towarow.length];
+        for(int i=0;i< t_towarow.length;i++){
+            s[i] = String.format("%10s  %10d  %10.2f %10.2f \n",t_towarow[i].nazwa,t_towarow[i].ilosc,t_towarow[i].cena
+            ,t_towarow[i].wartosc);
+        }
+        return s;
+    }
+
+    @Override
+    public String naglowek_listy() {
+        return String.format("%2s %10s  %10s  %10s %10s \n","L.p" ,"nazwa", "ilosc",
+                "cena", "wartosc");
+    }
+
+    @Override
+    public String infozestawienia() {
+        return info+"\n";
+    }
+
+    @Override
+    public String dodatkowe_info() {
+        return String.format("Laczna wartosc towarow : %7.2f", lacznaWartosc());
+    }
+}
+
+
+
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Student s1 = new Student("Jan","Kowalski", 1,6.0);
+        Student s2 = new Student("Filip","Strozik",2,5.0);
+
+        Student [] tablica_studentow = {s1,s2};
+        GrupaStud gs = new GrupaStud("Infromatyka W8",tablica_studentow);
+
+        gs.DodajStudenta(new Student("Kasia","Haras",3,4.50));
+
+        Wykaz w1 = new Wykaz(gs);
+        System.out.println(w1);
+        System.out.println();
+
+        Towar t1 = new Towar("procesor",1,30.99);
+        Towar t2 = new Towar("ram",3,10.99);
+        Towar t3 = new Towar("karta GPU",2,50.99);
+
+        Towar [] tablica_towarow = {t1,t2,t3};
+        Zakup zakup = new Zakup("Sprzedarz w dniu : 01.12.2020", tablica_towarow);
+        zakup.DodajTowar(new Towar("iMac",3,399.99));
+
+        Wykaz w2 = new Wykaz(zakup);
+        System.out.println(w2);
+
+    }
+}
+
+
