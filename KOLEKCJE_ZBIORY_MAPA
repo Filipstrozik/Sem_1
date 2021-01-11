@@ -1,0 +1,987 @@
+import java.util.*;
+
+class FirmaHashMap {
+    int max;
+    HashMap<String, Pracownik> listaPracownikow;
+
+    private PracownikCompare_Nazwisko Comparator1;
+    private PracownikCompare_Imie Comparator2;
+    private PracownikCompare_Wiek Comparator3;
+
+    FirmaHashMap (){
+        listaPracownikow = new HashMap<String, Pracownik>();
+        max=100;
+        Comparator1 = new PracownikCompare_Nazwisko();
+        Comparator2 = new PracownikCompare_Imie();
+        Comparator3 = new PracownikCompare_Wiek();
+    }
+
+    public void przyjmijNowegoPracownika(Pracownik p){
+        if(listaPracownikow.size()<max){
+            if(!listaPracownikow.containsValue(p)){
+                listaPracownikow.put(p.getNazwisko(),p);
+            }
+            else
+            {
+                System.out.println("zdublowane nazwiska!");
+            }
+        }
+        else {
+            System.out.println("osiągnieto limit!");
+        }
+    }
+
+    public void zwolnij(String n){
+        listaPracownikow.remove(n);
+    }
+
+    public Pracownik znajdz(String n){
+        return listaPracownikow.get(n);
+    }
+
+    public int ileZatrudnionychUrz() {
+        int counter=0;
+        for(Pracownik pracownik: listaPracownikow.values())
+        {
+            if(pracownik instanceof Urzednik) counter++;
+        }
+        return counter;
+    }
+
+    public int ileZatrudnionychR() {
+        int counter=0;
+        for(Pracownik pracownik: listaPracownikow.values())
+        {
+            if (pracownik instanceof Robotnik) counter++;
+        }
+        return counter;
+    }
+
+    public double sumaWyplat(){
+        double suma=0;
+        Set<Map.Entry<String,Pracownik>> entries = listaPracownikow.entrySet();
+        for(Map.Entry<String,Pracownik> e: entries){
+            suma+=e.getValue().placa();
+        }
+        return suma;
+    }
+
+
+    public String toString() {
+        String s="";
+        for(String nazwisko :listaPracownikow.keySet()){
+            s=s+listaPracownikow.get(nazwisko)+"\n";
+        }
+        return s;
+    }
+
+    public void sortujPoNazwisku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow.values());
+        Collections.sort(tlist,Comparator1);
+        System.out.println(tlist);
+
+    }
+
+    public void sortujPoImieniu(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow.values());
+        Collections.sort(tlist,Comparator2);
+        System.out.println(tlist);
+    }
+
+    public void sortujPoWieku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow.values());
+        Collections.sort(tlist,Comparator3);
+        System.out.println(tlist);
+    }
+
+    public void sortuj(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow.values());
+        Collections.sort(tlist);
+        System.out.println(tlist);
+    }
+
+    public String wydrukListyPracownikow(){
+        String s = "Wydruk Pracownikow: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow.values()){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+
+    public String wydrukListyPlac(){
+        String s = "Wydruk Płac: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow.values()){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+}
+
+class FirmaTreeSet {
+    int max;
+    TreeSet<Pracownik> listaPracownikow;
+
+    private PracownikCompare_Nazwisko Comparator1;
+    private PracownikCompare_Imie Comparator2;
+    private PracownikCompare_Wiek Comparator3;
+
+    FirmaTreeSet (){
+        listaPracownikow = new TreeSet<Pracownik>();
+        max=100;
+        Comparator1 = new PracownikCompare_Nazwisko();
+        Comparator2 = new PracownikCompare_Imie();
+        Comparator3 = new PracownikCompare_Wiek();
+    }
+
+    public void przyjmijNowegoPracownika(Pracownik p){
+        if(listaPracownikow.size()<max){
+            if(!listaPracownikow.contains(p)){
+                listaPracownikow.add(p);
+            }
+            else
+            {
+                System.out.println("zdublowane nazwiska!");
+            }
+        }
+        else {
+            System.out.println("osiągnieto limit!");
+        }
+    }
+
+    public void zwolnij(String n){
+        for (Pracownik pracownik: listaPracownikow){
+            if(pracownik.getNazwisko().equals(n))
+            {
+                listaPracownikow.remove(pracownik);
+                break;
+            }
+        }
+    }
+
+    public Pracownik znajdz(String n){
+        for (Pracownik pracownik: listaPracownikow){
+            if(pracownik.getNazwisko().equals(n))
+            {
+                return pracownik;
+            }
+        }
+        return null;
+    }
+
+    public int ileZatrudnionychUrz() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            Pracownik pracownik = iterator.next();
+            if(pracownik instanceof Urzednik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int ileZatrudnionychR() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            Pracownik pracownik = iterator.next();
+            if(pracownik instanceof Robotnik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public double sumaWyplat(){
+        double suma=0;
+        for(Pracownik pracownik:listaPracownikow){
+            suma+=pracownik.placa();
+        }
+        return suma;
+    }
+
+
+    public String toString() {
+        String s = null;
+        for(Pracownik pracownik:listaPracownikow){
+            s=s+pracownik+"\n";
+        }
+        return s;
+    }
+
+    public void sortujPoNazwisku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator1);
+        System.out.println(tlist);
+
+    }
+
+    public void sortujPoImieniu(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator2);
+        System.out.println(tlist);
+    }
+
+    public void sortujPoWieku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator3);
+        System.out.println(tlist);
+    }
+
+    public void sortuj(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist);
+        System.out.println(tlist);
+    }
+
+    public String wydrukListyPracownikow(){
+        String s = "Wydruk Pracownikow: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+
+    public String wydrukListyPlac(){
+        String s = "Wydruk Płac: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+}
+
+class FirmaHashSet {
+    int max;
+    HashSet<Pracownik> listaPracownikow;
+
+    private final PracownikCompare_Nazwisko Comparator1;
+    private final PracownikCompare_Imie Comparator2;
+    private final PracownikCompare_Wiek Comparator3;
+
+    FirmaHashSet (){
+        listaPracownikow = new HashSet<Pracownik>();
+        max=100;
+        Comparator1 = new PracownikCompare_Nazwisko();
+        Comparator2 = new PracownikCompare_Imie();
+        Comparator3 = new PracownikCompare_Wiek();
+    }
+
+    public boolean przyjmijNowegoPracownika(Pracownik p){
+        return listaPracownikow.add(p);
+    }
+
+    public void zwolnij(String n){
+        for (Pracownik pracownik: listaPracownikow){
+            if(pracownik.getNazwisko().equals(n))
+            {
+                listaPracownikow.remove(pracownik);
+            }
+        }
+    }
+
+    public Pracownik znajdz(String n){
+        for (Pracownik pracownik: listaPracownikow){
+            if(pracownik.getNazwisko().equals(n))
+            {
+                return pracownik;
+            }
+        }
+        return null;
+    }
+
+    public int ileZatrudnionychUrz() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            if(iterator.next() instanceof Urzednik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int ileZatrudnionychR() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            if(iterator.next() instanceof Robotnik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public double sumaWyplat(){
+        double suma=0;
+        for(Pracownik pracownik:listaPracownikow){
+            suma+=pracownik.placa();
+        }
+        return suma;
+    }
+
+
+    public String toString() {
+        String s ="";
+        for(Pracownik pracownik:listaPracownikow){
+            s=s+pracownik+"\n";
+        }
+        return s;
+    }
+
+    public void sortujPoNazwisku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator1);
+        System.out.println(tlist);
+
+    }
+
+    public void sortujPoImieniu(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator2);
+        System.out.println(tlist);
+    }
+
+    public void sortujPoWieku(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist,Comparator3);
+        System.out.println(tlist);
+    }
+
+    public void sortuj(){
+        List<Pracownik> tlist =  new ArrayList<Pracownik>(listaPracownikow);
+        Collections.sort(tlist);
+        System.out.println(tlist);
+    }
+
+    public String wydrukListyPracownikow(){
+        String s = "Wydruk Pracownikow: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+
+    public String wydrukListyPlac(){
+        String s = "Wydruk Płac: \n";
+        int liczba_os =0;
+        for(Pracownik pracownik : listaPracownikow){
+            if(pracownik instanceof Urzednik){
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Urzednik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            else{
+                s = s+liczba_os+" "+pracownik.getNazwisko() +" Robotnik "+ pracownik.getCzesc_etatu()+" "+pracownik.placa()+"\n";
+            }
+            liczba_os++;
+        }
+        return s;
+    }
+}
+
+class Firma {
+    int max;
+    ArrayList<Pracownik> listaPracownikow;
+
+    private PracownikCompare_Nazwisko Comparator1;
+    private PracownikCompare_Imie Comparator2;
+    private PracownikCompare_Wiek Comparator3;
+
+    Firma (){
+        listaPracownikow = new ArrayList<Pracownik>();
+        max=100;
+        Comparator1 = new PracownikCompare_Nazwisko();
+        Comparator2 = new PracownikCompare_Imie();
+        Comparator3 = new PracownikCompare_Wiek();
+    }
+
+    public void przyjmijNowegoPracownika(Pracownik p){
+        if(listaPracownikow.size()<max){
+            if(!listaPracownikow.contains(p)){
+                listaPracownikow.add(p);
+            }
+            else
+            {
+                System.out.println("zdublowane nazwiska!");
+            }
+        }
+        else {
+            System.out.println("osiągnieto limit!");
+        }
+    }
+
+    public void zwolnij(String n){
+        for (Pracownik pracownik: listaPracownikow){
+            if(pracownik.getNazwisko().equals(n))
+            {
+                listaPracownikow.remove(pracownik);
+            }
+        }
+    }
+
+    public Pracownik znajdz(String n){
+        for(int i=0;i<listaPracownikow.size();i++){
+            if(listaPracownikow.get(i).getNazwisko().equals(n))
+            {
+                return listaPracownikow.get(i);
+            }
+        }
+        return null;
+    }
+
+    public int ileZatrudnionychUrz() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            Pracownik pracownik = iterator.next();
+            if(pracownik instanceof Urzednik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int ileZatrudnionychR() {
+        int counter=0;
+        Iterator<Pracownik> iterator = listaPracownikow.iterator();
+        while(iterator.hasNext()){
+            Pracownik pracownik = iterator.next();
+            if(pracownik instanceof Robotnik){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public double sumaWyplat(){
+        double suma=0;
+        for(Pracownik pracownik:listaPracownikow){
+            suma+=pracownik.placa();
+        }
+        return suma;
+    }
+
+
+    public void wydruk(){
+        for(Pracownik pracownik:listaPracownikow){
+            System.out.println(pracownik);
+        }
+    }
+
+    public void sortujPoNazwisku(){
+        Collections.sort(listaPracownikow,Comparator1);
+    }
+
+    public void sortujPoImieniu(){
+        Collections.sort(listaPracownikow,Comparator2);
+    }
+
+    public void sortujPoWieku(){
+        Collections.sort(listaPracownikow,Comparator3);
+    }
+
+    public void sortuj(){
+        Collections.sort(listaPracownikow);
+    }
+
+    public String wydrukListyPracownikow(){
+        String s = "Wydruk Pracownikow: \n";
+        for(int i=0; i<listaPracownikow.size();i++){
+            if(listaPracownikow.get(i) instanceof Urzednik){
+                s = s+i+" "+listaPracownikow.get(i).getNazwisko() +" Urzednik "+ listaPracownikow.get(i).getCzesc_etatu()+"\n";
+            }
+            else{
+                s = s+i+" "+listaPracownikow.get(i).getNazwisko() +" Robotnik "+ listaPracownikow.get(i).getCzesc_etatu()+"\n";
+            }
+        }
+        return s;
+    }
+
+    public String wydrukListyPlac(){
+        String s = "Wydruk Płac: \n";
+        for(int i=0; i<listaPracownikow.size();i++){
+            if(listaPracownikow.get(i) instanceof Urzednik){
+                s = s+i+" "+listaPracownikow.get(i).getNazwisko() +" Urzednik "+ listaPracownikow.get(i).getCzesc_etatu()+" "+listaPracownikow.get(i).placa()+"\n";
+            }
+            else{
+                s = s+i+" "+listaPracownikow.get(i).getNazwisko() +" Robotnik "+ listaPracownikow.get(i).getCzesc_etatu()+" "+listaPracownikow.get(i).placa()+"\n";
+            }
+        }
+        return s;
+    }
+}
+
+
+abstract class Pracownik implements Comparable<Pracownik>{
+    protected String imie;
+    protected String nazwisko;
+    protected double wiek;
+    protected double czesc_etatu;
+
+    public Pracownik(){
+        this.imie = null;
+        this.nazwisko = null;
+        this.wiek = 0.0;
+        this.czesc_etatu = 0.0;
+    }
+
+    public Pracownik(String imie, String n,double w,double cz_et){
+        this.imie = imie;
+        this.nazwisko=n;
+        this.wiek = w;
+        this.czesc_etatu=cz_et;
+    }
+    //Gettery
+    public String getImie(){
+        return imie;
+    }
+
+    public String getNazwisko(){
+        return nazwisko;
+    }
+
+    public double getWiek(){
+        return wiek;
+    }
+
+    public double getCzesc_etatu(){
+        return czesc_etatu;
+    }
+
+    //Settery
+
+    public void setImie(String imie){ this.imie = imie; }
+
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public void setWiek(double wiek) { this.wiek = wiek; }
+
+    public void setCzesc_etatu(double czesc_etatu) {
+        this.czesc_etatu = czesc_etatu;
+    }
+
+
+    abstract double placa();
+
+    @Override
+    public int compareTo(Pracownik p){
+        int poNazwisku =  this.nazwisko.compareTo(p.getNazwisko());
+        if(poNazwisku != 0)
+        {
+            return poNazwisku;
+        }
+        int poImieniu = this.imie.compareTo(p.getImie());
+        if(poImieniu != 0)
+        {
+            return poImieniu;
+        }
+        if(this.wiek>p.getWiek()) return 1;
+        if(this.wiek<p.getWiek()) return -1;
+        return 0;
+
+    }
+
+    public boolean equals(Object p){
+        Pracownik pracownik = (Pracownik) p;
+        return this.nazwisko.equals(pracownik.getNazwisko());
+    }
+
+    public String toString(){
+        return imie +" " + nazwisko +" " +wiek;
+    }
+}
+
+class PracownikCompare_Nazwisko implements Comparator<Pracownik>
+{
+    @Override
+    public int compare(Pracownik o1, Pracownik o2) {
+        return o1.getNazwisko().compareTo(o2.getNazwisko());
+    }
+}
+
+class PracownikCompare_Imie implements Comparator<Pracownik>
+{
+    @Override
+    public int compare(Pracownik o1, Pracownik o2) {
+        return o1.getImie().compareTo(o2.getImie());
+    }
+}
+
+class PracownikCompare_Wiek implements Comparator<Pracownik>
+{
+    @Override
+    public int compare(Pracownik o1, Pracownik o2) {
+        if(o1.getWiek()>o2.getWiek()) return 1;
+        if(o1.getWiek()<o2.getWiek()) return -1;
+        return 0;
+    }
+}
+
+
+class Robotnik extends Pracownik{
+    public static final int limitGodzin=40; //dla wszystkich pracowników limit taki sam
+    private int liczbaGodzin;
+    private double stawkaGodzinowa;
+    public Robotnik(String i,String n,double w, double cz_et,int liczba_godzin,double stawka_godzinowa){
+        super(i,n,w,cz_et);
+        liczbaGodzin=liczba_godzin;
+        stawkaGodzinowa=stawka_godzinowa;
+    }
+
+    public double placa(){
+        double suma;
+        if(liczbaGodzin>=limitGodzin){
+            suma =(liczbaGodzin-limitGodzin)*stawkaGodzinowa*1.5 + limitGodzin*stawkaGodzinowa;
+        }
+        else{
+            suma = liczbaGodzin*stawkaGodzinowa;
+        }
+        return suma;
+    }
+
+
+    //    Gettery
+    public int getLiczbaGodzin(){
+        return liczbaGodzin;
+    }
+
+    public int getLimitGodzin(){
+        return limitGodzin;
+    }
+
+    public double getStawkaGodzinowa(){
+        return stawkaGodzinowa;
+    }
+    //    Settery
+
+    public void setLiczbaGodzin(int liczbaGodzin){
+        this.liczbaGodzin=liczbaGodzin;
+    }
+
+    public void setStawkaGodzinowa(double stawkaGodzinowa){
+        this.stawkaGodzinowa=stawkaGodzinowa;
+    }
+    //    przyslonięcie
+    public boolean equals(Pracownik p){
+        if(p instanceof Robotnik)
+        {
+            if(super.getNazwisko().equals(p.getNazwisko()) && super.getCzesc_etatu()==p.getCzesc_etatu() && this.limitGodzin==((Robotnik) p).limitGodzin && this.liczbaGodzin==((Robotnik) p).liczbaGodzin
+                    && this.stawkaGodzinowa==((Robotnik) p).stawkaGodzinowa){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    boolean equals(Urzednik p) {
+        return false;
+    }
+
+
+
+    public String toString(){
+        String dane;
+        dane = super.toString() + " robotnik";
+        return dane;
+    }
+}
+
+
+class Urzednik extends Pracownik{
+    private final double placa_podst =1350.0;
+    int procentPremii;
+    public Urzednik(String i,String n,double w, double cz_et, int procent_premii){
+        super(i,n,w,cz_et);
+        procentPremii=procent_premii;
+    }
+
+    public double placa(){
+        return placa_podst*getCzesc_etatu()+procentPremii*0.01*placa_podst;
+    }
+
+    boolean equals(Robotnik p) {
+        return false;
+    }
+
+    boolean equals(Pracownik p){
+        if(p instanceof Urzednik)
+        {
+            if(super.getNazwisko().equals(p.getNazwisko()) && super.getCzesc_etatu()==p.getCzesc_etatu() && this.procentPremii==((Urzednik) p).procentPremii && this.placa_podst==((Urzednik) p).placa_podst){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+            return false;
+
+    }
+
+
+    boolean czyUrzednik() {
+        return true;
+    }
+
+
+    public String toString(){
+        String dane;
+        dane = super.toString() +" urzednik ";
+        return dane;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        //Tworzenie Kolekcji
+        Firma f = new Firma();
+        FirmaHashSet fhs = new FirmaHashSet();
+        FirmaTreeSet fts = new FirmaTreeSet();
+        FirmaHashMap fmp = new FirmaHashMap();
+
+        //Tworzenie nowych Pracowników
+        Robotnik r1 = new Robotnik("Robert","Kowalski",40.5,0.5,40,25.6);
+        Urzednik r2 = new Urzednik("Krystian","Nowak",26.8,0.5,70);
+        Urzednik r3 = new Urzednik("Marcin","Strozik",23.2,1.0,50);
+        Robotnik r4 = new Robotnik("Adam","Adamowicz",33.2,1.2,70,16.5);
+        Urzednik r5 = new Urzednik("Wojtek","Wojtowicz",25.3,1.0,50);
+        Urzednik r6 = new Urzednik("Kamil","Wojtacha",35.5,0.6,70);
+        Urzednik r7 = new Urzednik("Kamil","Wojtasz",35.5,0.6,70);
+
+        //Przyjmowanie dwoch Pracownikow
+//        f.przyjmijNowegoPracownika(r1);
+//        f.przyjmijNowegoPracownika(r2);
+//        System.out.println(f);
+
+
+        fhs.przyjmijNowegoPracownika(r1);
+        fhs.przyjmijNowegoPracownika(r2);
+        System.out.println(fhs);
+
+
+//        fts.przyjmijNowegoPracownika(r1);
+//        fts.przyjmijNowegoPracownika(r2);
+
+
+//        fmp.przyjmijNowegoPracownika(r1);
+//        fmp.przyjmijNowegoPracownika(r2);
+//        System.out.println(fmp);
+
+
+        //Usuwanie Kowalskiego
+
+//        System.out.println("Liczba Pracownikow: "+f.listaPracownikow.size());
+//        f.zwolnij("Kowalski");
+//        System.out.println(f);
+//        System.out.println("Liczba Pracownikow: "+f.listaPracownikow.size());
+
+
+        System.out.println("Liczba Pracownikow: "+fhs.listaPracownikow.size());
+        fhs.zwolnij("Kowalski");
+        System.out.println(fhs);
+        System.out.println("Liczba Pracownikow: "+fhs.listaPracownikow.size());
+
+
+//        System.out.println("Liczba Pracownikow: "+fts.listaPracownikow.size());
+//        fts.zwolnij("Kowalski");
+//        System.out.println(fts);
+//        System.out.println("Liczba Pracownikow: "+fts.listaPracownikow.size());
+
+
+//        System.out.println("Liczba Pracownikow: "+fmp.listaPracownikow.size());
+//        fmp.zwolnij("Kowalski");
+//        System.out.println(fmp);
+//        System.out.println("Liczba Pracownikow: "+fmp.listaPracownikow.size());
+
+        //Przyjmowanie nowych Pracownikow
+
+//        f.przyjmijNowegoPracownika(r3);
+//        f.przyjmijNowegoPracownika(r4);
+//        f.przyjmijNowegoPracownika(r5);
+//        f.przyjmijNowegoPracownika(r6);
+//        f.przyjmijNowegoPracownika(r7);
+
+
+        fhs.przyjmijNowegoPracownika(r3);
+        fhs.przyjmijNowegoPracownika(r4);
+        fhs.przyjmijNowegoPracownika(r5);
+        fhs.przyjmijNowegoPracownika(r6);
+        fhs.przyjmijNowegoPracownika(r7);
+
+//
+//
+//        fts.przyjmijNowegoPracownika(r3);
+//        fts.przyjmijNowegoPracownika(r4);
+//        fts.przyjmijNowegoPracownika(r5);
+//        fts.przyjmijNowegoPracownika(r6);
+//        fts.przyjmijNowegoPracownika(r7);
+
+
+
+//        fmp.przyjmijNowegoPracownika(r3);
+//        fmp.przyjmijNowegoPracownika(r4);
+//        fmp.przyjmijNowegoPracownika(r5);
+//        fmp.przyjmijNowegoPracownika(r6);
+//        fmp.przyjmijNowegoPracownika(r7);
+
+        // Metody Firmy:
+
+//        System.out.println("Liczba Pracownikow: "+f.listaPracownikow.size());
+//        System.out.println();
+//        System.out.println("Liczba Urzednikow: "+f.ileZatrudnionychUrz());
+//        System.out.println();
+//        System.out.println("Liczba Robotnikow: "+f.ileZatrudnionychR());
+//        System.out.println();
+//        System.out.println("Suma wypłat w firmie: "+f.sumaWyplat());
+
+
+
+        System.out.println("Liczba Pracownikow: "+fhs.listaPracownikow.size());
+        System.out.println();
+        System.out.println("Liczba Urzednikow: "+fhs.ileZatrudnionychUrz());
+        System.out.println();
+        System.out.println("Liczba Robotnikow: "+fhs.ileZatrudnionychR());
+        System.out.println();
+        System.out.println("Suma wypłat w firmie: "+fhs.sumaWyplat());
+
+
+
+//        System.out.println();
+//        System.out.println("Liczba Pracownikow: "+fts.listaPracownikow.size());
+//        System.out.println();
+//        System.out.println("Liczba Urzednikow: "+fts.ileZatrudnionychUrz());
+//        System.out.println();
+//        System.out.println("Liczba Robotnikow: "+fts.ileZatrudnionychR());
+//        System.out.println();
+//        System.out.println("Suma wypłat w firmie: "+fts.sumaWyplat());
+
+
+
+//        System.out.println("Liczba Pracownikow: "+fmp.listaPracownikow.size());
+//        System.out.println();
+//        System.out.println("Liczba Urzednikow: "+fmp.ileZatrudnionychUrz());
+//        System.out.println();
+//        System.out.println("Liczba Robotnikow: "+fmp.ileZatrudnionychR());
+//        System.out.println();
+//        System.out.println("Suma wypłat w firmie: "+fmp.sumaWyplat());
+
+
+        //Sortowanie Pracownikow
+
+//        System.out.println("wydruk pososrtowanie po nazwsiku, imieniu, wieku  naraz");
+//        f.sortuj();
+//
+//        System.out.println("wydruk pososrtowanie po Nazwisku");
+//        f.sortujPoNazwisku();
+//
+//        System.out.println("wydruk pososrtowanie po  Imieniu");
+//        f.sortujPoImieniu();
+//
+//
+//        System.out.println("wydruk pososrtowanie Wieku");
+//        f.sortujPoWieku();
+
+
+//
+        System.out.println("wydruk pososrtowanie po nazwsiku, imieniu, wieku  naraz");
+        fhs.sortuj();
+
+
+        System.out.println("wydruk pososrtowanie po Nazwisku");
+        fhs.sortujPoNazwisku();
+
+        System.out.println("wydruk pososrtowanie po  Imieniu");
+        fhs.sortujPoImieniu();
+
+
+        System.out.println("wydruk pososrtowanie Wieku");
+        fhs.sortujPoWieku();
+
+
+
+//        System.out.println("wydruk pososrtowanie po nazwsiku, imieniu, wieku  naraz");
+//        fts.sortuj();
+//
+//
+//        System.out.println("wydruk pososrtowanie po Nazwisku");
+//        fts.sortujPoNazwisku();
+//
+//        System.out.println("wydruk pososrtowanie po  Imieniu");
+//        fts.sortujPoImieniu();
+//
+//
+//        System.out.println("wydruk pososrtowanie Wieku");
+//        fts.sortujPoWieku();
+
+
+//        System.out.println(fmp);
+//
+//        System.out.println("wydruk pososrtowanie po nazwsiku, imieniu, wieku  naraz");
+//        fmp.sortuj();
+//
+//
+//        System.out.println("wydruk pososrtowanie po Nazwisku");
+//        fmp.sortujPoNazwisku();
+//
+//        System.out.println("wydruk pososrtowanie po  Imieniu");
+//        fmp.sortujPoImieniu();
+//
+//
+//        System.out.println("wydruk pososrtowanie Wieku");
+//        fmp.sortujPoWieku();
+
+
+
+
+
+
+
+
+    }
+}
