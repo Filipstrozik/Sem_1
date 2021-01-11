@@ -1,0 +1,140 @@
+import java.io.*;
+import java.util.*;
+
+class TextProcessing {
+    private ArrayList<String> wyrazy = new ArrayList<String>();
+
+    public void wczytaj(String path_name){
+        File text = new File(path_name);
+        String wiersz = null;
+        String [] t_wyrazy = null;
+        try(BufferedReader breader = new BufferedReader(new FileReader(text))) {
+            while((wiersz = breader.readLine())!=null)
+            {
+                t_wyrazy = wiersz.split("[, ?.@!:();]");
+                for (String wyraz:t_wyrazy){
+                    wyrazy.add(wyraz);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void usun_znaki (){
+        ArrayList<String> temp = new ArrayList<String>();
+        temp.add("");
+        wyrazy.removeAll(temp);
+    }
+
+    public void wydruk(){
+        for (String wyraz:wyrazy){
+            System.out.println(wyraz);
+        }
+    }
+
+    public void liczba_wszystkich_wyrazow(){
+        System.out.println(wyrazy.size());
+    }
+
+    public void liczba_wyrazow_bez_powtorzen(){
+        HashSet<String> chwilowy_zbior = new HashSet<String>(wyrazy);
+        // to zalezy czy zliczamy pierwsze wystapienie
+        System.out.println(chwilowy_zbior.size());
+    }
+
+    public void liczba_wyrazow_nie_powtarzajacych_sie(){ // OKAZUJE SIE ZE TO TO SAMO CO NA GÓRZE
+        TreeMap<String, Integer> mapa_slow = new TreeMap<String,Integer>();
+        for (String wyraz:wyrazy){
+            if(mapa_slow.containsKey(wyraz))
+            {
+                mapa_slow.put(wyraz,mapa_slow.get(wyraz)+1);
+            }
+            else
+            {
+                mapa_slow.put(wyraz,1);
+            }
+        }
+        int counter=0;
+        Set<Map.Entry<String,Integer>> entries = mapa_slow.entrySet();
+        for(Map.Entry<String,Integer> e: entries){
+            if(e.getValue()==1)
+            {
+                counter++;
+            }
+        }
+        System.out.println(counter);
+    }
+
+    public void tabela_Wyraz_Wystapienie_Alfabetycznie(){
+        TreeMap<String, Integer> mapa_slow = new TreeMap<String,Integer>();
+        for (String wyraz:wyrazy){
+            if(mapa_slow.containsKey(wyraz))
+            {
+                mapa_slow.put(wyraz,mapa_slow.get(wyraz)+1);
+            }
+            else
+            {
+                mapa_slow.put(wyraz,1);
+            }
+        }
+        Set<Map.Entry<String,Integer>> entries = mapa_slow.entrySet();
+        for(Map.Entry<String,Integer> e: entries){
+            System.out.printf("%12s %3d \n",e.getKey(),e.getValue());
+        }
+    }
+
+    public void tabela_Wyraz_Wystapienie_WystapieniaRosnaco(){
+        TreeMap<String, Integer> mapa_slow = new TreeMap<String,Integer>();
+        for (String wyraz:wyrazy){
+            if(mapa_slow.containsKey(wyraz))
+            {
+                mapa_slow.put(wyraz,mapa_slow.get(wyraz)+1);
+            }
+            else
+            {
+                mapa_slow.put(wyraz,1);
+            }
+        }
+        List<Map.Entry<String,Integer>> posortowane_lista_par = new ArrayList<>(mapa_slow.entrySet());
+        Collections.sort(posortowane_lista_par, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+        for (Map.Entry<String,Integer> para :posortowane_lista_par){
+            System.out.printf("%12s %3d \n",para.getKey(),para.getValue());
+        }
+    }
+    
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        TextProcessing proc1 = new TextProcessing();
+//        proc1.wczytaj("plik.txt");
+        proc1.wczytaj("test.txt");
+        proc1.usun_znaki();
+        proc1.wydruk();
+
+        System.out.println("LICZBA WSZYSTKICH WYRAZOW");
+        proc1.liczba_wszystkich_wyrazow();
+
+        System.out.println("LICZBA WYRAZOW BEZPOWTORZEN");
+        proc1.liczba_wyrazow_bez_powtorzen();
+
+        System.out.println("LICZBA WYRAZOW NIE POWTARZAJACYCH SIE");
+        proc1.liczba_wyrazow_nie_powtarzajacych_sie();
+
+        System.out.println("TABELA WYRAZ - WYSTAPIENIE ALFABETYCZNIE");
+        proc1.tabela_Wyraz_Wystapienie_Alfabetycznie();
+
+        System.out.println("TABELA WYRAZ - WYSTAPIENIE WYSTAPIENIA ROSNĄCO");
+        proc1.tabela_Wyraz_Wystapienie_WystapieniaRosnaco();
+    }
+}
