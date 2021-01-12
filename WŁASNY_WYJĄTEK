@@ -1,0 +1,50 @@
+
+KLASA MOJEGO WYJATKU DZIEDZICZY PO EXCEPTION
+
+class MojWyjatek extends Exception{
+  public MojWyjatek(String s) {
+    /*Wywołaj konstruktor klasy Exception, aby poprawnie zdefiniować wyjątek,
+    Możesz użyć konstruktor przeciążony - z komunikatem.*/
+    super(s);
+  }
+  //Metody przesłonięte z klasy Exception
+  @Override
+  public void printStackTrace() {
+    super.printStackTrace();
+    System.out.println("\nMożna coś dopisać ...\n");
+  }
+  @Override
+  public String getMessage() {
+    return super.getMessage() + "\n\n TO JEST BARDZO WAŻNY KOMUNIKAT DO MOJEGO BŁĘDU !\n";
+   }
+}
+
+///TRY- GDZIE WYWYOLUJEMY NIEBEZPIECZNA METODE KTORA ZWRACA WYJATEK 
+
+
+/// METODA THROWS!! MOJWYJATEK
+public class PrzykładWyjątek {
+  static int A;
+  public static void Start() {
+    Scanner odczyt = new Scanner(System.in);
+    A = odczyt.nextInt();
+    //Tu obsługujemy naszą 'niebezpieczną' metodę.
+    try {
+    Metoda1();
+    } catch (MojWyjatek e) {
+    e.printStackTrace();
+    }
+  }
+  /* Ta metoda generuje nasz wyjątek - informuje o tym,
+  jak również określa, kiedy ten wyjątek wystąpi.*/
+  public static void Metoda1() throws MojWyjatek 
+  {
+  if (A != 10) throw new MojWyjatek("Mój Wyjątek ! - dotyczy podanej wartości różnej od 10");
+  }
+  public static void main(String[] args) throws InterruptedException 
+  {
+    Start();
+    Thread.sleep(10);
+    System.out.println("\nKoniec Programu...");
+  }
+}
