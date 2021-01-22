@@ -1,0 +1,4 @@
+Lista studentow kierunku Informatyka
+Lp   Nazwisko   Imie    Ocena1   Ocena2  Ocena3
+1    Nowak     Jan      3.0     4.0      5.0
+2    Kowalski   Marek   2.0     3.0      4.0
